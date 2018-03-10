@@ -36,10 +36,14 @@ export class FavoritesPage {
     const modal = this.modalCtrl.create(QuotePage, quote);
     modal.present();
     modal.onDidDismiss((remove: boolean) => {
-      if(remove){
-        this.quoteService.removeQuoteFromFavorites(quote);
-        this.quotes = this.quoteService.getFavoriteQuotes();
+      if (remove) {
+        this.onRemoveFromFavorites(quote);
       }
     });
+  }
+
+  onRemoveFromFavorites(quote: Quote) {
+    this.quoteService.removeQuoteFromFavorites(quote);
+    this.quotes = this.quoteService.getFavoriteQuotes();
   }
 }
